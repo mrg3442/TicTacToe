@@ -13,11 +13,11 @@ function placeXorO(squareNumber) {
         //This condition checks whos turn it is
         if(activePlayer === 'X') {
             //If active player eqauls X the x.png is placed in html
-            select.style.backgroundImage ='url("images/x.png")';
+            select.style.backgroundImage ='url("images/x2.png")';
             //active player can only be a X or O so if not X then O
         }else{
             //If active played equals O then o.png is placed
-            select.style.backgroundImage = 'url("images/o.png")';
+            select.style.backgroundImage = 'url("images/o3.jpg")';
         }
         //sqaureNumber and activePlayer are concatenated together and added to array
         selectedSqaures.push(squareNumber + activePlayer);
@@ -64,7 +64,7 @@ function placeXorO(squareNumber) {
             }
         }
     }
-
+}
 
     function checkWinConditions() {
         //This function parses the selectedSqaures array to check for win conditions
@@ -106,9 +106,9 @@ function placeXorO(squareNumber) {
         // This condition checks for tie if none of above are true and 9 sqaures are selected code exucutes
         else if(selectedSqaures.length >= 9) {
             //Function plays tie game sound
-            audio('./media/tie.mp3');
-            //function returns a 1 second timer before reset game
-            setTimeout(function () { resetGame(); }, 1000);
+            audio('./media/tie2.mp3');
+            //function returns a 2 second timer before reset game
+            setTimeout(function () { resetGame(); }, 2000);
         }
 
         //This function checks to see if array includes 3 strings 
@@ -128,7 +128,7 @@ function placeXorO(squareNumber) {
     function disableClick(){
         //makes body unclickable
         body.style.pointerEvents = 'none';
-        //makes body clickable after one second
+        //makes body clickable after 1 second
         setTimeout(function () {body.style.pointerEvents = 'auto';}, 1000);
     }
 
@@ -166,8 +166,10 @@ function placeXorO(squareNumber) {
                 const animationLoop = requestAnimationFrame(animateLineDrawing);
                 //this method clears content from the last loop iteration
                 c.clearRect(0, 0, 608, 608)
-                //this method moves us to a new starting point for our line
+                //begins a new path
                 c.beginPath();
+                //this method moves us to a new starting point for our line
+                c.moveTo(x1, y1);
                 //indicates end point in line
                 c.lineTo(x,y);
                 //line width
@@ -206,7 +208,7 @@ function placeXorO(squareNumber) {
         //this line disallows clicking while the win sound is playing
         disableClick();
         //plays win sounds
-        audio('./media/winGame.mp3');
+        audio('./media/win2.mp3');
         //calls main animation loop
         animateLineDrawing();
         //waits 1 second clears canvas resets game
@@ -225,4 +227,3 @@ function placeXorO(squareNumber) {
         //resets array so is empty and we can start over
         selectedSqaures =[];
     }
-}
